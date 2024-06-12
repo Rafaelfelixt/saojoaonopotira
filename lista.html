@@ -12,13 +12,11 @@
         <div id="divplis">
             <h1>Lista de Convidados</h1>
             <div id="lista"></div>
+            <button onclick="removerSelecionados()">Remover Selecionados</button>
             <button onclick="voltar()">Voltar</button>
         </div>
         <div></div>
     </main>
-    
-    
-
     <script>
         function obterDados() {
             var usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
@@ -34,13 +32,33 @@
                 return;
             }
 
-            usuarios.forEach(function(usuario) {
-                var usuarioHTML = '<p><strong>Nome:</strong> ' + usuario.nome + '</p>';
+            usuarios.forEach(function(usuario, index) {
+                var usuarioHTML = '<p><input type="checkbox" class="remover-checkbox" data-index="' + index + '"> <strong>Nome:</strong> ' + usuario.nome + '</p>';
                 usuarioHTML += '<p><strong>Telefone:</strong> ' + usuario.telefone + '</p>';
                 usuarioHTML += '<p><strong>Comidas:</strong> ' + usuario.comidas.join(', ') + '</p>';
                 usuarioHTML += '<p><strong>Bebidas:</strong> ' + usuario.bebidas.join(', ') + '</p>';
                 listaDiv.innerHTML += usuarioHTML + '<hr>';
             });
+        }
+
+        function removerSelecionados() {
+            var checkboxes = document.querySelectorAll('.remover-checkbox:checked');
+            var usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+            var indicesParaRemover = Array.from(checkboxes).map(function(checkbox) {
+                return parseInt(checkbox.getAttribute('data-index'));
+            });
+
+            indicesParaRemover.sort(function(a, b) {
+                return b - a;
+            });
+
+            indicesParaRemover.forEach(function(index) {
+                usuarios.splice(index, 1);
+            });
+
+            localStorage.setItem('usuarios', JSON.stringify(usuarios));
+            obterDados();
         }
 
         function voltar() {
