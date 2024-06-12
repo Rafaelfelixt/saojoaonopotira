@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Convidados</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main id="pglist">
+        <div></div>
+        <div id="divplis">
+            <h1>Lista de Convidados</h1>
+            <div id="lista"></div>
+            <button onclick="voltar()">Voltar</button>
+        </div>
+        <div></div>
+    </main>
+    
+    
+
+    <script>
+        function obterDados() {
+            var usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+            exibirDados(usuarios);
+        }
+
+        function exibirDados(usuarios) {
+            var listaDiv = document.getElementById('lista');
+            listaDiv.innerHTML = '';
+
+            if (usuarios.length === 0) {
+                listaDiv.innerHTML = '<p>Nenhum dado encontrado.</p>';
+                return;
+            }
+
+            usuarios.forEach(function(usuario) {
+                var usuarioHTML = '<p><strong>Nome:</strong> ' + usuario.nome + '</p>';
+                usuarioHTML += '<p><strong>Telefone:</strong> ' + usuario.telefone + '</p>';
+                usuarioHTML += '<p><strong>Comidas:</strong> ' + usuario.comidas.join(', ') + '</p>';
+                usuarioHTML += '<p><strong>Bebidas:</strong> ' + usuario.bebidas.join(', ') + '</p>';
+                listaDiv.innerHTML += usuarioHTML + '<hr>';
+            });
+        }
+
+        function voltar() {
+            window.location.href = 'index.html';
+        }
+
+        window.onload = obterDados;
+    </script>
+</body>
+</html>

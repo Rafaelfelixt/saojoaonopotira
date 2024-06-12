@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Festa de São João</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <div>
+
+        </div>
+        <div id="princ">
+            <h1>Formulário de Festa de São João</h1>
+            <form id="form">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+                <br>
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" required>
+                <br>
+                <h2>Comidas</h2>
+                <label><input type="checkbox" name="comida" value="arroz"> Arroz</label><br>
+                <label><input type="checkbox" name="comida" value="baião"> Baião</label><br>
+                <label><input type="checkbox" name="comida" value="creme_de_galinha"> Creme de Galinha</label><br>
+                <label><input type="checkbox" name="comida" value="vatapá"> Vatapá</label><br>
+                <label><input type="checkbox" name="comida" value="paçoca"> Paçoca</label><br>
+                <label><input type="checkbox" name="comida" value="bolo_de_milho"> Bolo de Milho</label><br>
+                <label><input type="checkbox" name="comida" value="cocada"> Cocada</label><br>
+                <label><input type="checkbox" name="comida" value="mugunzá"> Mugunzá</label><br>
+                <h2>Bebidas</h2>
+                <label><input type="checkbox" name="bebida" value="refrigerante"> Refrigerante</label><br>
+                <label><input type="checkbox" name="bebida" value="suco"> Suco</label><br>
+                <label><input type="checkbox" name="bebida" value="alua"> Aluá</label><br>
+                <br>
+                <input type="submit" value="Enviar">
+            </form>
+            
+        </div>
+        <div>
+
+        </div>
+    </main>
+    <footer>
+        <button id="lis" onclick="verLista()">Ver Lista</button>
+    </footer>
+    
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
